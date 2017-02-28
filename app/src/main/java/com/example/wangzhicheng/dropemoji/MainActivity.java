@@ -14,8 +14,9 @@ public class MainActivity extends AppCompatActivity {
     }
     public void showDropImg(View view){
         dropImg=new DropImg(MainActivity.this,R.drawable.lu000)
-        .setSpeed(DropImg.ViewPosInfo.SPEED_MEDIUM)
-        .setImgNum(30);
+                .addImg(R.drawable.lu001)
+                .setRise(false)   //true为上升，false为下落
+                .setImgNum(10);   //设置图片数量
         dropImg.show();
     }
 }

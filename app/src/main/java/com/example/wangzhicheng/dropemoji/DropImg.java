@@ -10,7 +10,9 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by wangzhicheng on 2017/2/27.
@@ -23,29 +25,35 @@ public class DropImg {
     ViewPosInfo viewPosInfo;
 
     public static class ViewPosInfo{   //用来保存一些位置信息
-        public static float SPEED_SLOW=100;
-        public static float SPEED_MEDIUM=200;
-        public static float SPEED_FAST=300;
-
-        public float speed=100;    //表情掉落速度
         public int imgId=-1;    //表情源文件
+        public List<Integer>imgIdList=new ArrayList<>();  //表情id管理
         public int num=20;   //表情数量
+        public boolean isRise=true;
     }
 
     public DropImg(Context context,int imgId) {
         this.mContext = context;
         mAnchor = ((Activity) mContext).findViewById(android.R.id.content);
         viewPosInfo=new ViewPosInfo();
-        viewPosInfo.imgId=imgId;
+        viewPosInfo.imgIdList.add(imgId);
     }
 
-    public DropImg setSpeed(float speed){
-        viewPosInfo.speed=speed;
+    public DropImg addImg(int id){
+        viewPosInfo.imgIdList.add(id);
+        return this;
+    }
+
+    public DropImg addImg(List<Integer> list){
+        viewPosInfo.imgIdList.addAll(list);
         return this;
     }
 
     public DropImg setImgNum(int num){
         viewPosInfo.num=num;
+        return this;
+    }
+    public DropImg setRise(boolean rise){
+        viewPosInfo.isRise=rise;
         return this;
     }
 
